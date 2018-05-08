@@ -23,6 +23,9 @@ count$Date <- as.Date(count$Date, "%Y-%m-%d")
 All_totals <- read.csv("All_totals.csv")
 monthly_2018 <- read.csv("2018_monthtot.csv", stringsAsFactors=FALSE)
 monthly_2018$Date <- as.Date(monthly_2018$Date, "%Y-%m-%d")
+time_csv <- read.csv("time_crime.csv")
+top_20 <- read.csv("top_20.csv")
+hourly_time <- read.csv("hourly_time.csv", stringsAsFactors=FALSE)
 
 #2015 Data
 crime_2015 <- read.csv("july_2015.csv", stringsAsFactors=FALSE)
@@ -279,7 +282,7 @@ server <- function(session, input, output) {
   
   
   hourlyData <- reactive({
-    selData  <- time_csv %>% filter(as.character(Crime_Type) == input$hourly) %>% select(-X, Time, Count)
+    selData  <- hourly_time %>% filter(as.character(Crime_Type) == input$hourly) %>% select(Time, Count)
   })
   
   output$graph4 <- renderPlotly({
