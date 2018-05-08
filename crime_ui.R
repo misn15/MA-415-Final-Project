@@ -14,15 +14,15 @@ library(lubridate)
 library(plotly)
 library(stringr)
 
-
+#read in data and clean
 Boston_crime <- read.csv("Boston_crime.csv", stringsAsFactors=FALSE)
 count <- read.csv("crime_count.csv", stringsAsFactors=FALSE)
 count_crime <- read.csv("count_crime.csv", stringsAsFactors=FALSE)
 count$Crime_Type <- as.character(count$Crime_Type)
 count$Date <- as.Date(count$Date, "%Y-%m-%d")
 All_totals <- read.csv("All_totals.csv")
-monthly_2018 <- read.csv("2018_monthtot.csv")
-monthly_2018$Date <- as.Date(monthly_2018$Date, "%Y/%m/%d")
+monthly_2018 <- read.csv("2018_monthtot.csv", stringsAsFactors=FALSE)
+monthly_2018$Date <- as.Date(monthly_2018$Date, "%Y-%m-%d")
 
 #2015 Data
 crime_2015 <- read.csv("july_2015.csv", stringsAsFactors=FALSE)
@@ -37,7 +37,7 @@ crime_2015_clean$Date <- as.Date(crime_2015_clean$Date, "%m/%d/%Y")
 monthly_2015 <- read.csv("month_2015.csv")
 
 
-#clean data
+#clean data 2018
 Boston_crime[Boston_crime==-1.0] <- NA
 Boston_crime_clean <- na.omit(Boston_crime)
 Boston_date = str_split_fixed(Boston_crime_clean$OCCURRED_ON_DATE, " ", 2)
@@ -47,10 +47,11 @@ colnames(Boston_crime_clean)[colnames(Boston_crime_clean) == '2'] <- 'Time'
 Boston_crime_clean$Date <- as.Date(Boston_crime_clean$Date, "%m/%d/%Y")
 weekly_crime <- read.csv("weekly_crime.csv")
 
-#Create map
 
 choices2 <- as.character(unique(Boston_crime_clean$OFFENSE_CODE_GROUP))
-#choices2 <- c('All', choices2)
+choices2 <- c('All', choices2)
+
+choices3 <- as.character(unique(Boston_crime_clean$OFFENSE_CODE_GROUP))
 
 choices_2015 <- as.character(unique(crime_2015_clean$OFFENSE_CODE_GROUP))
 choices_2015 <- c('All', choices_2015)
@@ -62,8 +63,6 @@ ui <- dashboardPage(
       menuSubItem("2018 Maps", tabName = "Maps_2018"),
       menuSubItem("2018 Graphs", tabName = "Graphs_2018")),
     menuItem("July 2015 Data", tabName = "Crime_2015", icon = icon("th"))
-       #menuSubItem("2015 Maps", tabName = "Maps_2015"),
-      # menuSubItem("2015 Graphs", tabName = "2015 Graphs"))
   )),
 dashboardBody(tabItems(
   tabItem(tabName = "Maps_2018",
@@ -116,13 +115,13 @@ dashboardBody(tabItems(
               dygraphOutput("graph2"),
               selectInput("crime",
                           "Type of Crime:",
-                          choices = choices2
+                          choices = choices3
             )),
             box(
               plotlyOutput("graph4"),
               selectInput("hourly",
                           "Type of Crime:",
-                          choices = choices2
+                          choices = choices3
             )
             ),
             box(
@@ -265,7 +264,7 @@ server <- function(session, input, output) {
       selData <- select[select$Crime_Type == input$crime, ]
       
     }else{
-      selData <- monthly_2018 %>% select(Date, Count)
+      select <- monthly_2018 %>% select(Date, Count)
     }
     
   })
