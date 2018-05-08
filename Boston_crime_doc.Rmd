@@ -19,7 +19,7 @@ Often, when moving to a new city, friends and family will give you their opinion
 Boston is very good at providing data for the public. They have a website called, Analyze Boston, which is a platform in which they provide accessible data to the public for analysis and visualization. Through this website, the Boston Police Department provides data on several different types of crime throughout the city.
 You can download the data as a csv file or retrieve it using the API. This data has been collected for every month beginning June of 2015. 
 
-## Cleaning the Data
+# Cleaning the Data
 
 As with many datasets, I had to remove unknown values which were coded as -1 from the data. I also had to separate some columns to extract the specific time data that I needed and then convert these new columns into a date format that I could use in the plots. 
 
