@@ -1,0 +1,48 @@
+---
+title: "Boston Crime"
+author: "Nicole Mis"
+date: "May 6, 2018"
+output: pdf_document
+---
+
+# Boston Crime Background
+
+Every city has its fair share of crime and Boston is no exception. However, compared to other major cities, Boston has a much lower crime rate and has seen this rate steadily declining over the past two decades. Boston was not always as safe as it was now. Certain streets near Jamaica Pond were once forbidden and now, in 2018, I can personally say that this area is much safer. 
+
+# Personal Anecdote
+
+Often, when moving to a new city, friends and family will give you their opinions on which areas are safe and which are not. I remember when I moved to Boston for college, my sister, who was currently living in Brighton, gave me advice on which areas of Boston were safe. Although I knew that Boston had dangerous areas and that living in a city almost always means a higher crime rate, this did not deter me from running alone late at night, something that I've done since I was much younger. Yes, I know that this isn't the safest thing to do but it's a habit that I can't seem to kick. Therefore, I decided to visualize crime in Boston to better inform myself of the realities of crime in the city as well as others and to give an unbiased view of the reality of crime in Boston.
+
+
+# Data Collection
+
+Boston is very good at providing data for the public. They have a website called, Analyze Boston, which is a platform in which they provide accessible data to the public for analysis and visualization. Through this website, the Boston Police Department provides data on several different types of crime throughout the city.
+You can download the data as a csv file or retrieve it using the API. This data has been collected for every month beginning June of 2015. 
+
+## Cleaning the Data
+
+As with many datasets, I had to remove unknown values which were coded as -1 from the data. I also had to separate some columns to extract the specific time data that I needed and then convert these new columns into a date format that I could use in the plots. 
+
+# Mapping the Data
+
+In order to make sense of the data, I made three different maps. The first map plots all of spots where the crimes occurred. You can filter the dots by the type of crime committed to get a better sense of where certain crimes occurred. I think maps are very powerful visualizations and therefore, I made several maps that all give a slightly different view of crime distribution in Boston. 
+
+
+# Graphing the Data
+
+After mapping the data, I produced several graphs that show how crime rates vary over several different intervals of time. The first graph shows how the crime rate chanes over the month. The second graph displays how the crime rate varys over a 24 hour period and the final graph shows how the crime rate varys over the week. I thought that it would be interesting to see how crime changes over different intervals of time. Finally, I have a bar graph which displays the top 20 crime categories with the most crimes committed. 
+
+
+# Comparing the Data to June 2015
+
+After displaying graphs and maps for 2018 data, I also provide some maps and graphs to show how crime has changed in Boston during the past couple of years. I provided a map and graph of Boston crime in July 2015 because this was the first year the Boston Police Department collected data using this new open data hub. 
+
+
+
+
+
+
+
+
+
+
